@@ -1,0 +1,5 @@
+source "https://rubygems.org"  # where gems will be downloaded from
+ruby "~> 3.0.0"  # ruby version, change for the one you use
+
+gem "httparty"
+gem "dotenv"
