@@ -3,3 +3,5 @@ ruby "~> 3.0.0"  # ruby version, change for the one you use
 
 gem "httparty"
 gem "dotenv"
+gem "nokogiri" # used by reverse_markdown
+gem "reverse_markdown"  # to convert html to markdown

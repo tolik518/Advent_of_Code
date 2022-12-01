@@ -5,5 +5,6 @@ services:
     container_name: advent_of_code_ruby
     volumes:
       - ./../../${year}/${day}:/code/${year}/${day}
+      - ./../../script:/script
     working_dir: /code
     entrypoint: sh -c "ruby ${year}/${day}/part0${part}.rb"
