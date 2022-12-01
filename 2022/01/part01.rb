@@ -2,22 +2,20 @@ YEAR = 2022
 DAY  = 1
 PART = 1
 
-filename = "%s/%02d/part%02d_input.txt" % [YEAR, DAY, PART]
+html_filename = "%s/%02d/part%02d_input.txt" % [YEAR, DAY, PART]
 
-highest = 0
+elves = []
 sum = 0
 
-File.open(filename).each(sep="\n") do |line|
+File.open(html_filename).each(sep="\n") do |line|
 
   if line.chomp.empty?
+    elves.append(sum)
     sum = 0
   end
 
   sum = line.to_i + sum
-
-  if (sum > highest)
-    highest = sum
-  end
 end
 
-puts highest.to_s
+puts "Top elve is carrying: #{elves.sort[-1]} calories\n"
+puts "Top 3 elves are carrying: #{elves.sort[-3..-1].sum} calories\n"
