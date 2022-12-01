@@ -1,5 +1,7 @@
 USER=$(shell whoami)
 UID=$(shell id -u $(USER))
+year=$$(date +"%Y")
+day=$$(date +"%d")
 
 .PHONY: build_image
 build_image:
@@ -11,7 +13,7 @@ run:
 
 .PHONY: get_readme
 get_readme:
-	docker-compose -f docker/ruby/docker-compose.yml run --rm --no-deps --entrypoint="ruby /script/get_readme.rb" ruby
+	docker-compose -f docker/ruby/docker-compose.yml run --rm --no-deps --entrypoint="ruby /scripts/get_readme.rb" ruby
 
 .PHONY: stop
 stop:

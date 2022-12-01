@@ -1,8 +1,7 @@
 YEAR = 2022
 DAY  = 1
-PART = 1
 
-html_filename = "%s/%02d/part%02d_input.txt" % [YEAR, DAY, PART]
+html_filename = "%s/%02d/input.txt" % [YEAR, DAY]
 
 elves = []
 sum = 0
