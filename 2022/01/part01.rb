@@ -1,5 +1,23 @@
-require 'json'                  # parse JSON
-require 'httparty'              # go to the artifacts_url and download the artifact
-require 'dotenv'                # load the .env file
+YEAR = 2022
+DAY  = 1
+PART = 1
 
-puts "Hello World"
+filename = "%s/%02d/part%02d_input.txt" % [YEAR, DAY, PART]
+
+highest = 0
+sum = 0
+
+File.open(filename).each(sep="\n") do |line|
+
+  if line.chomp.empty?
+    sum = 0
+  end
+
+  sum = line.to_i + sum
+
+  if (sum > highest)
+    highest = sum
+  end
+end
+
+puts highest.to_s
