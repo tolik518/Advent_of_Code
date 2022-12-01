@@ -3,12 +3,16 @@ require 'httparty'
 require 'fileutils'
 require 'nokogiri'
 require 'reverse_markdown'
+require 'dotenv'
+
+Dotenv.load(".env")
+Dotenv.require_keys("SESSION")
 
 AOC = "https://adventofcode.com/"
+SESSION_KEY = ENV['SESSION']
 
 # https://adventofcode.com/2021/day/1
 def download_readme(year, day)
-
   dirname = "%s/%02d/" % [year, day]
   html_filename = 'README.HTML'
   url = AOC + year + "/day/" + day
@@ -16,11 +20,14 @@ def download_readme(year, day)
   FileUtils.mkdir_p(dirname)
 
   File.open(dirname + html_filename, "wb") do |readme_html_file|
-      response = HTTParty.get(url)
-      content = Nokogiri::HTML.parse(response.body)
-      readme_html_file.write(content.at("article").inner_html)
+      response = HTTParty.get(url, {
+        headers: { "Cookie" => "session=%s;" % [SESSION_KEY] }
+        }
+      )
       if (response.code == 200) then
-        puts "Downloaded..."
+        content = Nokogiri::HTML.parse(response.body)
+        readme_html_file.write(content.xpath("//article").inner_html)
+        puts "Downloaded readme"
       else
         puts "Looks like there is no puzzle for today (yet?)"
         puts "Download failed: %s - %s" % [response.code, response.message]
@@ -28,6 +35,8 @@ def download_readme(year, day)
   end
   convert_to_markdown(dirname, html_filename)
 end
+
+
 
 def convert_to_markdown(dirname, html_filename)
   file_data = File.read(dirname + html_filename)
@@ -48,6 +57,30 @@ def convert_to_markdown(dirname, html_filename)
   File.delete(dirname + html_filename)
 end
 
+
+
+def get_input(year, day)
+  dirname = "%s/%02d/" % [year, day]
+  input_filename = 'input.txt'
+  url = AOC + year + "/day/" + day + "/input"
+
+  File.open(dirname + input_filename, "wb") do |input_file|
+    response = HTTParty.get(url, {
+      headers: { "Cookie" => "session=%s;" % [SESSION_KEY] }
+      }
+    )
+
+    if (response.code == 200) then
+      input_file.write(response.body)
+      puts "Downloaded input"
+    else
+      puts "Looks like there is no puzzle for today (yet?)"
+      puts "Download failed: %s - %s" % [response.code, response.message]
+    end
+  end
+end
+
+
 YEAR = Time.new.year
 MONTH = Time.new.month
 DAY = Time.new.day
@@ -58,5 +91,6 @@ elif DAY > 25
   puts "Looks like the AoC ended some days ago"
 else
   download_readme(YEAR.to_s, DAY.to_s)
+  get_input(YEAR.to_s, DAY.to_s)
 end
 

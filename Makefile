@@ -11,9 +11,12 @@ build_image:
 run:
 	year=$(year) day=$(day) part=$(part) docker-compose -f docker/ruby/docker-compose.yml up
 
-.PHONY: get_readme
-get_readme:
-	docker-compose -f docker/ruby/docker-compose.yml run --rm --no-deps --entrypoint="ruby /scripts/get_readme.rb" ruby
+.PHONY: initialize
+initialize:
+	docker-compose -f docker/ruby/docker-compose.yml run --rm --no-deps --entrypoint="ruby /scripts/initialize.rb" ruby
+
+.PHONY: init
+init: initialize
 
 .PHONY: stop
 stop:
