@@ -15,3 +15,5 @@ make run year=2022 day=01
 ```
 
 If you want to run the scripts without the Docker overhead then you'd need to install the [Gemfile](docker/ruby/Gemfile) in the `docker/ruby`-folder first before executing the files.
+
+Tip: Use `git update-index --assume-unchanged .env` to ignore changes to the `.env`-file
