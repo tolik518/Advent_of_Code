@@ -33,5 +33,7 @@ def calculate_for_three_lines()
   end
   puts sum.to_s
 end
-
+puts "part one: "
+calculate_for_half_lines()
+puts "part two: "
 calculate_for_three_lines()
