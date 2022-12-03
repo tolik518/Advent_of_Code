@@ -32,10 +32,9 @@ CONDITIONS = {
 def calculate_points_part1()
   sum = 0
   File.open(INPUT_FILENAME).each(sep="\n") do |line|
-    line = line.sub('X', 'A').sub('Y', 'B').sub('Z', 'C')
+    line = line.sub(' ','').sub('X', 'A').sub('Y', 'B').sub('Z', 'C')
 
-    opponent = line[0];
-    response = line[2];
+    opponent, response = line.chars
 
     sum += POINTS_FOR_SYMBOL[response]
 
@@ -47,14 +46,14 @@ def calculate_points_part1()
       sum += POINTS_FOR_CONDITION["lose"]
     end
   end
-  puts sum.to_s
+  sum
 end
 
 def calculate_points_part2()
   sum = 0
   File.open(INPUT_FILENAME).each(sep="\n") do |line|
-    opponent = line[0];
-    response = line[2];
+    line = line.sub(' ','')
+    opponent, response = line.chars
 
     if CONDITIONS[response] == "lose"
       response = response.sub(response, WIN_CONDITIONS[opponent])
@@ -74,10 +73,8 @@ def calculate_points_part2()
       sum += POINTS_FOR_CONDITION["lose"]
     end
   end
-  puts sum.to_s
+  sum
 end
 
-puts "part 1: "
-calculate_points_part1()
-puts "part 2: "
-calculate_points_part2()
+puts "part 1: #{calculate_points_part1()}"
+puts "part 2: #{calculate_points_part2()}"
