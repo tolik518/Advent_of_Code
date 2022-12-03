@@ -16,7 +16,7 @@ def calculate_for_half_lines()
     value = (duplicate_letter.ord - 96) % 58
     sum += value
   end
-  puts sum.to_s
+  sum
 end
 
 def calculate_for_three_lines()
@@ -31,9 +31,8 @@ def calculate_for_three_lines()
       strings = []
     end
   end
-  puts sum.to_s
+  sum
 end
-puts "part one: "
-calculate_for_half_lines()
-puts "part two: "
-calculate_for_three_lines()
+
+puts "part one: #{calculate_for_half_lines()}"
+puts "part two: #{calculate_for_three_lines()}"
