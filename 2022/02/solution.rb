@@ -76,5 +76,5 @@ def calculate_points_part2()
   sum
 end
 
-puts "part 1: #{calculate_points_part1()}"
-puts "part 2: #{calculate_points_part2()}"
+puts "Part 1: #{calculate_points_part1()}"
+puts "Part 2: #{calculate_points_part2()}"

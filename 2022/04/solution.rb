@@ -3,7 +3,7 @@ DAY  = 4
 
 INPUT_FILENAME = "%s/%02d/input.txt" % [YEAR, DAY]
 
-def part1()
+def find_duplicates()
   sum = 0
   File.open(INPUT_FILENAME).each() do |line|
     elf_one, elf_two = line.split(",").map{
@@ -18,7 +18,7 @@ def part1()
   sum
 end
 
-def part2()
+def find_overlaps()
   sum = 0
   File.open(INPUT_FILENAME).each() do |line|
     elf_one, elf_two = line.split(",").map{
@@ -33,5 +33,5 @@ def part2()
   sum
 end
 
-puts "part one: #{part1()}"
-puts "part one: #{part2()}"
+puts "Part 1: #{find_duplicates()}"
+puts "Part 2: #{find_overlaps()}"

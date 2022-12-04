@@ -17,4 +17,4 @@ File.open(html_filename).each() do |line|
 end
 
 puts "Part 1: Top elve is carrying: #{elves.sort[-1]} calories\n"
-puts "Part 1: Top 3 elves are carrying: #{elves.sort[-3..-1].sum} calories\n"
+puts "Part 2: Top 3 elves are carrying: #{elves.sort[-3..-1].sum} calories\n"
