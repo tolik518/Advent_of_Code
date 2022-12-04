@@ -7,11 +7,12 @@ def find_duplicates()
   sum = 0
   File.open(INPUT_FILENAME).each() do |line|
     elf_one, elf_two = line.split(",").map{
-      |elf| first, last = elf.split("-").map{|value| value.to_i}
+      first, last = _1.split("-").map(&:to_i)
       (first..last).to_a
     }
 
-    if (elf_one & elf_two) == elf_one || (elf_one & elf_two) == elf_two
+    unionized = (elf_one & elf_two)
+    if unionized == elf_one || unionized == elf_two
       sum = sum +1
     end
   end
@@ -22,11 +23,11 @@ def find_overlaps()
   sum = 0
   File.open(INPUT_FILENAME).each() do |line|
     elf_one, elf_two = line.split(",").map{
-      |elf| first, last = elf.split("-").map{|value| value.to_i}
+      first, last = _1.split("-").map(&:to_i)
       (first..last).to_a
     }
 
-    if !(elf_one & elf_two).empty?
+    if (elf_one & elf_two).any?
       sum = sum + 1
     end
   end

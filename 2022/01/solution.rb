@@ -7,12 +7,10 @@ elves = []
 sum = 0
 
 File.open(html_filename).each() do |line|
-
   if line.chomp.empty?
     elves.append(sum)
     sum = 0
   end
-
   sum = line.to_i + sum
 end
 
