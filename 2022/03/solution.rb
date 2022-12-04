@@ -10,7 +10,7 @@ end
 
 def calculate_for_half_lines()
   sum = 0
-  File.open(INPUT_FILENAME).each(sep="\n") do |line|
+  File.open(INPUT_FILENAME).each() do |line|
     first_half, second_half = cut_in_half(line)
     duplicate_letter = (first_half.chars & second_half.chars).join
     value = (duplicate_letter.ord - 96) % 58
@@ -22,7 +22,7 @@ end
 def calculate_for_three_lines()
   sum = 0
   strings = []
-  File.open(INPUT_FILENAME).each(sep="\n") do |line|
+  File.open(INPUT_FILENAME).each() do |line|
     strings.append(line)
     if strings.count == 3
       duplicate_letter = (strings[0].chars & strings[1].chars & strings[2].chars).join

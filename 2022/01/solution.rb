@@ -6,7 +6,7 @@ html_filename = "%s/%02d/input.txt" % [YEAR, DAY]
 elves = []
 sum = 0
 
-File.open(html_filename).each(sep="\n") do |line|
+File.open(html_filename).each() do |line|
 
   if line.chomp.empty?
     elves.append(sum)
@@ -16,5 +16,5 @@ File.open(html_filename).each(sep="\n") do |line|
   sum = line.to_i + sum
 end
 
-puts "Top elve is carrying: #{elves.sort[-1]} calories\n"
-puts "Top 3 elves are carrying: #{elves.sort[-3..-1].sum} calories\n"
+puts "Part 1: Top elve is carrying: #{elves.sort[-1]} calories\n"
+puts "Part 1: Top 3 elves are carrying: #{elves.sort[-3..-1].sum} calories\n"

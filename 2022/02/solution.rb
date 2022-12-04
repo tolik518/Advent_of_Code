@@ -31,7 +31,7 @@ CONDITIONS = {
 
 def calculate_points_part1()
   sum = 0
-  File.open(INPUT_FILENAME).each(sep="\n") do |line|
+  File.open(INPUT_FILENAME).each() do |line|
     line = line.sub(' ','').sub('X', 'A').sub('Y', 'B').sub('Z', 'C')
 
     opponent, response = line.chars
@@ -51,7 +51,7 @@ end
 
 def calculate_points_part2()
   sum = 0
-  File.open(INPUT_FILENAME).each(sep="\n") do |line|
+  File.open(INPUT_FILENAME).each() do |line|
     line = line.sub(' ','')
     opponent, response = line.chars
 
