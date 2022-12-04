@@ -81,6 +81,17 @@ def get_input(year, day)
 end
 
 
+def create_solution_blueprint(year, day)
+  dirname = "%s/%02d/" % [year, day]
+  solution_filename = 'solution.rb'
+
+  file_already_exists = File.exists?(dirname + solution_filename)
+  if !file_already_exists
+    FileUtils.cp("scripts/solution_blueprint.rb", dirname + solution_filename)
+  end
+end
+
+
 YEAR = Time.new.year
 MONTH = Time.new.month
 DAY = Time.new.day
@@ -90,7 +101,8 @@ if MONTH != 12
 elif DAY > 25
   puts "Looks like the AoC ended some days ago"
 else
-  download_readme(YEAR.to_s, DAY.to_s)
-  get_input(YEAR.to_s, DAY.to_s)
+  create_solution_blueprint(YEAR.to_s, DAY.to_s)
+  #download_readme(YEAR.to_s, DAY.to_s)
+  #get_input(YEAR.to_s, DAY.to_s)
 end
 
