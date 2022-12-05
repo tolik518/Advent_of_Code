@@ -101,8 +101,8 @@ if MONTH != 12
 elif DAY > 25
   puts "Looks like the AoC ended some days ago"
 else
+  download_readme(YEAR.to_s, DAY.to_s)
+  get_input(YEAR.to_s, DAY.to_s)
   create_solution_blueprint(YEAR.to_s, DAY.to_s)
-  #download_readme(YEAR.to_s, DAY.to_s)
-  #get_input(YEAR.to_s, DAY.to_s)
 end
 
